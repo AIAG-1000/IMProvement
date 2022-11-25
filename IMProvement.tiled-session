@@ -1,0 +1,113 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "graphics/testmap.tmx",
+    "expandedProjectPaths": [
+        "graphics",
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "D:/WORK/GB/Projects/Project Coven/Tiles/dream6.tmx": {
+            "scale": 6.227777777777777,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79.96431757359501,
+                "y": 71.85548617305977
+            }
+        },
+        "D:/WORK/GB/Projects/Project Coven/Tiles/tiletest.tsx": {
+            "scaleInDock": 3
+        },
+        "D:/WORK/GB/Projects/Project Coven/Tiles/tiletest2.tsx": {
+            "scaleInDock": 3
+        },
+        "D:/WORK/GB/Projects/Project Coven/Tiles/tiletest3.tsx": {
+            "scaleInDock": 3
+        },
+        "D:/WORK/GB/Projects/Project Coven/Tiles/tiletest4.tsx": {
+            "scaleInDock": 2
+        },
+        "D:/WORK/GB/Projects/Project Coven/Tiles/tiletest5.tsx": {
+            "scaleInDock": 3
+        },
+        "D:/WORK/GB/Projects/Project Coven/Tiles/tower.tmx": {
+            "scale": 4.151851851851852,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 72.25691347011596,
+                "y": 107.78322925958965
+            }
+        },
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/Spritesheet1.tsx": {
+            "scaleInDock": 4
+        },
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/memory1.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 86.72727272727272,
+                "y": 72.90909090909092
+            }
+        },
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/memory2.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 86.54545454545456,
+                "y": 223.45454545454544
+            }
+        },
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/memory3.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 80,
+                "y": 71.9090909090909
+            }
+        },
+        "graphics/testmap.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 564,
+                "y": 479
+            }
+        },
+        "graphics/testsheet.tmx": {
+            "scale": 1.01494140625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 511.35956894063315,
+                "y": 383.7659963436929
+            }
+        },
+        "graphics/testsheet.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "D:/WORK/cODE/py/IMProvement/graphics",
+    "map.height": 24,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 32,
+    "openFiles": [
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/memory3.tmx",
+        "D:/WORK/GB/Projects/Project Coven/Tiles/tower.tmx",
+        "D:/WORK/GB/Projects/Project Coven/Tiles/dream6.tmx",
+        "graphics/testsheet.tmx",
+        "graphics/testmap.tmx"
+    ],
+    "project": "IMProvement.tiled-project",
+    "recentFiles": [
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/memory3.tmx",
+        "D:/WORK/GB/Projects/Project Coven/Tiles/tower.tmx",
+        "D:/WORK/GB/Projects/Project Coven/Tiles/dream6.tmx",
+        "graphics/testsheet.tmx",
+        "graphics/testmap.tmx",
+        "graphics/testsheet.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}
