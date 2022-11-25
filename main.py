@@ -29,13 +29,24 @@ def player_input(button):
         if collision_check() == True:
             player_x -= (movement[event.key])
 
-    elif event.key == pygame.K_SPACE: start_game = True
+    #elif event.key == pygame.K_SPACE: start_game = True
 
     else: pass# This is for other modifier keys
 
 def collision_check():
     for x in rec_list:
         if x.collidepoint(player_x,player_y) == True: return True
+
+
+def menu_input(button):
+    global menu_offset, start_game
+    if event.key == pygame.K_UP and menu_offset > 0:
+        menu_offset += (movement[event.key])
+    if event.key == pygame.K_DOWN and menu_offset < 64:
+        menu_offset += (movement[event.key])
+    elif event.key == pygame.K_SPACE: # Need to change this later
+        start_game = True
+    else: pass
 
 
 
@@ -59,12 +70,18 @@ pygame.display.set_caption('IMProvement')
 # Loading images here
 testsurface = pygame.image.load('graphics/testmap.png').convert()
 testplayer = pygame.image.load('graphics/playerimp.png').convert_alpha() # The wee fella
+gem_orange = pygame.image.load('graphics/gem04.png').convert_alpha()
 test_font = pygame.font.Font(None,64)
+menu_sub = pygame.font.Font(None,32)
 
 #menu and menu text
 menu_surface = pygame.image.load('graphics/main_menu.png')
 menu_title = test_font.render('IMProvement',False,(255,255,255))
+menu_new_game = menu_sub.render('New Game',True,(255,255,255))
+menu_load_game = menu_sub.render('Load Game',True,(255,255,255))
+menu_quit = menu_sub.render('Quit',True,(255,255,255))
 pygame.display.set_icon(testplayer) # Window icon
+menu_offset = 0 # Add or subtract multiples of this offset to neatly move the cursor
 
 # CLOCK SETUP
 # To handle animation and frame control
@@ -116,6 +133,8 @@ while True: # This is to ensure loop always runs
         if event.type == pygame.QUIT: # If the eventtype is .QUIT:
             pygame.quit() # Tears down the display
             exit() # Properly exits the Python script
+        if event.type == pygame.MOUSEBUTTONDOWN: # This is a debug feature for eyeballing where exactly things are
+            print(pygame.mouse.get_pos())
 
 
 
@@ -123,8 +142,12 @@ while True: # This is to ensure loop always runs
         if start_game == False:
             screen.blit(menu_surface,(0,0))
             screen.blit(menu_title,(32,32))
+            screen.blit(menu_new_game,(832,608))
+            screen.blit(menu_load_game,(832,672-32))
+            screen.blit(menu_quit,(832,736-64))
+            screen.blit(gem_orange,(800,604+menu_offset))
             if event.type == pygame.KEYDOWN:
-                player_input(event.key)
+                menu_input(event.key)
 
 
     if start_game == True:
