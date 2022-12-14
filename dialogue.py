@@ -9,7 +9,7 @@ Create a 'text box' that maybe animates into position? <- from 64 to 960, height
 '''
 import pygame
 import menus
-
+from main import Main
 
 pygame.init()
 # The text chunks should probably be their own class
@@ -21,8 +21,7 @@ class Textobject:
         self.colour = colour
 
     def render_text(block):  # For putting text on the screen. Function needs to be called after other objects are drawn.
-        screen
-        screen.blit(block,(64 + border_offset, 544 + border_offset))  # 'block' needs to point to a string
+        Main.screen.blit(block,(64 + border_offset, 544 + border_offset))  # 'block' needs to point to a string
         pass
 
 # These are the parameters for text

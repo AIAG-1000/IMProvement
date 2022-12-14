@@ -23,21 +23,89 @@ pygame.init()
 # Main class
 # Migrating everything into Main that won't be within MainLoop, WIP
 class Main:
+    winwidth = 1024
+    winheight = 768
+    screen = pygame.display.set_mode((winwidth, winheight))
+    testplayer = pygame.image.load('graphics/playerimp.png').convert_alpha()  # The wee fella
+
+
+
     def __init__(self): # This class should load everything that needs to be loaded, then call MainLoop
         self.winwidth = 1024
-        self. winheight = 768
+        self.winheight = 768
         self.screen = pygame.display.set_mode((self.winwidth,self.winheight))
+
         self.caption = pygame.display.set_caption('IMProvement')
-        self.icon = pygame.display.set_icon(testplayer)
+
+        self.icon = pygame.display.set_icon(Main.testplayer)
+
+
 
         self.MainLoop()
 
     def MainLoop(self):
+        # MAIN LOOP
+        # Core logic to maintain display and await input from user
+
+        while True:  # This is to ensure loop always runs
+            for event in pygame.event.get():  # For each event in the event queue:
+                if event.type == pygame.QUIT:  # If the eventtype is .QUIT:
+                    pygame.quit()  # Tears down the display
+                    exit()  # Properly exits the Python script
+                if event.type == pygame.MOUSEBUTTONDOWN:  # This is a debug feature for eyeballing where exactly things are
+                    print(pygame.mouse.get_pos())
+
+                # Main Menu
+                if start_game == False:
+                    Main.screen.blit(menu_surface, (0, 0))
+                    Main.screen.blit(menu_title, (32, 32))
+                    Main.screen.blit(menu_new_game, (832, 608))
+                    Main.screen.blit(menu_load_game, (832, 672 - menus.menu_load.offset))
+                    Main.screen.blit(menu_quit_game, (832, 736 - menus.menu_quit.offset))
+                    Main.screen.blit(gem_orange, (800, 604 + menu_offset))
+                    if event.type == pygame.KEYDOWN:
+                        menu_input(event.key)
+
+                    if event.type == pygame.MOUSEBUTTONDOWN:  # This is a debug feature, delete this later
+                        if pygame.mouse.get_pressed(num_buttons=3) == (0, 0, 1):
+                            # screen.blit(testplayer,(pygame.mouse.get_pos())) # Works great though
+                            # screen.blit(dialogue.sample_render,(pygame.mouse.get_pos()))
+                            pygame.draw.rect(Main.screen, (153, 50, 204), text_rec)
+                            # screen.blit(dialogue.sample_render, (64+16,544+16))
+                            dialogue.Textobject.render_text(dialogue.sample_render)
+
+            if start_game == True:
+                # Background
+                Main.screen.blit(testsurface, (0, 0))
+                rec1.topleft = 240, 240  # Top-left corner should be at given coordinates
+                pygame.draw.rect(Main.screen, 'red', rec1)  # Draw rec1 to the 'screen', make it 'red'
+                pygame.draw.rect(Main.screen, 'green', rec2)
+                pygame.draw.rect(Main.screen, 'silver', rec3)
+
+                # Player
+
+                # Player movement
+                if event.type == pygame.KEYDOWN:
+                    player_input(event.key)
+
+                # Collision
+                # if testplayer_frame.colliderect(rec1): print("JINKIES")
+
+                testplayer_frame = Main.testplayer.get_rect(center=(player_x, player_y))
+                Main.screen.blit(Main.testplayer, (testplayer_frame))
+
+            pygame.display.update()
+            clock.tick(10)
+
         pass # Copy it into here, should be grand
 
 
 if __name__ == "__main__":
-    Main()
+
+    test_font = pygame.font.Font(None, 64)
+    menu_sub = pygame.font.Font(None, 32)
+    testsurface = pygame.image.load('graphics/testmap2.png').convert()
+    gem_orange = pygame.image.load('graphics/gem04.png').convert_alpha()
 
     # FUNCTIONS
     # Storing functions here
@@ -45,16 +113,14 @@ if __name__ == "__main__":
     def player_input(button):
         #if testplayer_frame.colliderect(rec1): return # Not great, leaving this here for now
         global player_x, player_y, start_game # Cannot declare these within the function so they are set to global
-        if event.key in [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]: # Check if cursor keys were pressed
-            if event.key in [pygame.K_UP, pygame.K_DOWN]: # Cross-references the key with a dictionary where movement integers are kept
-                player_y += (movement[event.key])
+        if button in [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]: # Check if cursor keys were pressed
+            if button in [pygame.K_UP, pygame.K_DOWN]: # Cross-references the key with a dictionary where movement integers are kept
+                player_y += (movement[button])
                 if collision_check() == True:
-                    player_y -= (movement[event.key])
-            else: player_x += (movement[event.key])
+                    player_y -= (movement[button])
+            else: player_x += (movement[button])
             if collision_check() == True:
-                player_x -= (movement[event.key])
-
-        #elif event.key == pygame.K_SPACE: start_game = True
+                player_x -= (movement[button])
 
         else: pass# This is for other modifier keys
 
@@ -65,11 +131,11 @@ if __name__ == "__main__":
 
     def menu_input(button):
         global menu_offset, start_game
-        if event.key == pygame.K_UP and menu_offset > 0:
-            menu_offset += (movement[event.key])
-        if event.key == pygame.K_DOWN and menu_offset < 64:
-            menu_offset += (movement[event.key])
-        elif event.key in [pygame.K_SPACE, pygame.K_RETURN]: # Need to change this later
+        if button == pygame.K_UP and menu_offset > 0:
+            menu_offset += (movement[button])
+        if button == pygame.K_DOWN and menu_offset < 64:
+            menu_offset += (movement[button])
+        elif button in [pygame.K_SPACE, pygame.K_RETURN]: # Need to change this later
             (menu_dict[menu_offset])()
             #start_game = True
         else: pass
@@ -104,9 +170,7 @@ if __name__ == "__main__":
     screen = pygame.display.set_mode((1024,768))
     pygame.display.set_caption('IMProvement')
     #pygame.display.set_icon(testplayer)
-    '''
-
-
+    
 
     # VISUAL ASSETS
     # Loading images here
@@ -115,14 +179,14 @@ if __name__ == "__main__":
     gem_orange = pygame.image.load('graphics/gem04.png').convert_alpha()
     test_font = pygame.font.Font(None,64)
     menu_sub = pygame.font.Font(None,32)
-
+    '''
     #menu and menu text
     menu_surface = pygame.image.load('graphics/main_menu.png')
     menu_title = test_font.render('IMProvement',False,(255,155,155))
     menu_new_game = menu_sub.render(menus.menu_new.text,True,(menus.menu_list_colour)) # These lines written before Class implementation, refer to menus.py
     menu_load_game = menu_sub.render(menus.menu_load.text,True,(menus.menu_list_colour))
     menu_quit_game = menu_sub.render(menus.menu_quit.text,True,(menus.menu_list_colour))
-    pygame.display.set_icon(testplayer) # Window icon
+    pygame.display.set_icon(Main.testplayer) # Window icon
     menu_offset = 0 # Add or subtract multiples of this offset to neatly move the cursor
     menu_dict = {0:start_game,32:load_game,64:exit_game} # Dictionary pairs menu_offset with function names
 
@@ -156,7 +220,7 @@ if __name__ == "__main__":
 
     # RECTANGLES
     # Defining size and position of rectangles before main loop starts
-    testplayer_frame = testplayer.get_rect(center = (player_x,player_y)) # This returns a rectangle equal to the size of testplayer, with a centrepoint set to the values of player_x and player_y
+    testplayer_frame = Main.testplayer.get_rect(center = (player_x,player_y)) # This returns a rectangle equal to the size of testplayer, with a centrepoint set to the values of player_x and player_y
 
     rec1 = pygame.Rect(256+16,256+16,128,128)
 
@@ -182,7 +246,8 @@ if __name__ == "__main__":
         rec3] + lrtb_list
          # rec_list is a list of all the collision objects, some of which are also lists.  Since movement is grid-based all collision can be expressed in rectangles!
 
-
+    Main()
+'''
     # MAIN LOOP
     # Core logic to maintain display and await input from user
 
@@ -244,4 +309,4 @@ if __name__ == "__main__":
 
         pygame.display.update()
         clock.tick(10)
-
+'''
