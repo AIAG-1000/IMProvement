@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "graphics/testmap.tmx",
+    "activeFile": "D:/WORK/GB/Projects/Project Skull/assets/Tiles/outerpath.tmx",
     "expandedProjectPaths": [
         ".",
         "graphics"
@@ -42,7 +42,8 @@
             }
         },
         "D:/WORK/GB/Projects/Project Skull/assets/Tiles/Spritesheet1.tsx": {
-            "scaleInDock": 4
+            "scaleInDock": 4,
+            "scaleInEditor": 1
         },
         "D:/WORK/GB/Projects/Project Skull/assets/Tiles/memory1.tmx": {
             "scale": 5.5,
@@ -68,12 +69,44 @@
                 "y": 72.00000000000001
             }
         },
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/outerpath.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 147.66666666666666,
+                "y": 34
+            }
+        },
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/outpost.tmx": {
+            "scale": 6.227777777777777,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 80.1248884924175,
+                "y": 71.935771632471
+            }
+        },
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/pyramid.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 171.33333333333331,
+                "y": 133.33333333333331
+            }
+        },
+        "graphics/intro_room.tmx": {
+            "scale": 3,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 391.33333333333337,
+                "y": 355.33333333333337
+            }
+        },
         "graphics/testmap.tmx": {
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 564,
-                "y": 479
+                "x": 512,
+                "y": 383.5
             }
         },
         "graphics/testsheet.tmx": {
@@ -85,7 +118,7 @@
             }
         },
         "graphics/testsheet.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 2,
             "scaleInEditor": 1
         }
     },
@@ -94,10 +127,18 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 32,
     "openFiles": [
-        "graphics/testmap.tmx"
+        "graphics/intro_room.tmx",
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/Spritesheet1.tsx",
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/outerpath.tmx",
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/pyramid.tmx"
     ],
     "project": "IMProvement.tiled-project",
     "recentFiles": [
+        "graphics/intro_room.tmx",
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/Spritesheet1.tsx",
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/pyramid.tmx",
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/outerpath.tmx",
+        "D:/WORK/GB/Projects/Project Skull/assets/Tiles/outpost.tmx",
         "graphics/testmap.tmx",
         "D:/WORK/GB/Projects/Project Skull/assets/Tiles/memory3.tmx",
         "graphics/testsheet.tmx",

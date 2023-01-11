@@ -3,22 +3,19 @@ Currently working on:
 A function to handle player movement -x
 Collision works, currently have to scale it up
 A menu system!  Using a class to handle menus -x (more or less complete)
-Dialogue system?
-Make sure this only runs when main, not when imported <- make a main() class
+Dialogue system? - Textbox complete-ish
+Consider externalising functions? - In progress, major hurdle complete
+A scene function is necessary -
 """
 
 #  importing pygame to do most things
 #  importing exit to prevent crashes when closing game
-# importing time because I keep wasting it
+#  importing time because I keep wasting it
 import pygame
 from sys import exit
 import time
 
-# importing my own files here
-import dialogue
-import menus
 
-pygame.init()
 
 # Main class
 # Migrating everything into Main that won't be within MainLoop, WIP
@@ -30,20 +27,14 @@ class Main:
 
 
 
+
     def __init__(self): # This class should load everything that needs to be loaded, then call MainLoop
-        self.winwidth = 1024
-        self.winheight = 768
-        self.screen = pygame.display.set_mode((self.winwidth,self.winheight))
-
         self.caption = pygame.display.set_caption('IMProvement')
-
         self.icon = pygame.display.set_icon(Main.testplayer)
-
-
-
         self.MainLoop()
 
     def MainLoop(self):
+        global text_rec_y, text_rec
         # MAIN LOOP
         # Core logic to maintain display and await input from user
 
@@ -67,12 +58,21 @@ class Main:
                         menu_input(event.key)
 
                     if event.type == pygame.MOUSEBUTTONDOWN:  # This is a debug feature, delete this later
-                        if pygame.mouse.get_pressed(num_buttons=3) == (0, 0, 1):
-                            # screen.blit(testplayer,(pygame.mouse.get_pos())) # Works great though
-                            # screen.blit(dialogue.sample_render,(pygame.mouse.get_pos()))
-                            pygame.draw.rect(Main.screen, (153, 50, 204), text_rec)
-                            # screen.blit(dialogue.sample_render, (64+16,544+16))
-                            dialogue.Textobject.render_text(dialogue.sample_render)
+                        if pygame.mouse.get_pressed(num_buttons=3) == (0,0,1): # This translates to "right click only"
+                            while dialogue.Textobject.text_rec.y > 544: # Repeatedly running this function as long as the box is not in position
+                                functions.textbox()
+                            if dialogue.Textobject.text_rec.y == 544: # Box is now in ideal position, function should change behaviour
+                                functions.textbox()
+                            break
+
+                            #else:
+                                #print("ONE STEP CLOSER TO THE EDGE")
+                               # break
+                            #dialogue.Textobject.render_text(dialogue.sample_render)
+                            # Note to future me: Draw the animations, then just add rectangle to the main loop
+                            # THEN draw text over it
+
+
 
             if start_game == True:
                 # Background
@@ -97,11 +97,13 @@ class Main:
             pygame.display.update()
             clock.tick(10)
 
-        pass # Copy it into here, should be grand
-
 
 if __name__ == "__main__":
-
+    # importing my own files here
+    import dialogue
+    import menus
+    import functions
+    pygame.init()
     test_font = pygame.font.Font(None, 64)
     menu_sub = pygame.font.Font(None, 32)
     testsurface = pygame.image.load('graphics/testmap2.png').convert()
@@ -153,9 +155,6 @@ if __name__ == "__main__":
     def exit_game():
         pygame.quit()
         exit()
-
-
-
 
 
 
@@ -230,7 +229,9 @@ if __name__ == "__main__":
     rec3 = pygame.Rect.copy(rec2)
     pygame.Rect.move_ip(rec3,0,128)
 
-    text_rec = pygame.Rect(64,544,896,160) # Decent basis for text box size
+    #text_rec_y = 768 # 544 is the target!
+    #text_rec = pygame.Rect(64,text_rec_y,896,160) # Decent basis for text box size
+
 
         #Boundary rectangles
     left_boundary = pygame.Rect(0,0,96,768)

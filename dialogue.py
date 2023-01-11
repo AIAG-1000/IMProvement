@@ -24,6 +24,10 @@ class Textobject:
         Main.screen.blit(block,(64 + border_offset, 544 + border_offset))  # 'block' needs to point to a string
         pass
 
+    text_rec_y = 768  # 544 is the target!
+    text_rec = pygame.Rect(64, text_rec_y, 896, 160)  # Decent basis for text box size
+
+
 # These are the parameters for text
 sample_string = 'Hello I am a test string'
 sample_size = 32
@@ -44,4 +48,5 @@ border_offset = 16 # Border offset is 16 when paired with a size 32 font. Consid
 # Function awaits user input and sets variable to null as it finishes up
 
 
-
+# Text blocks
+# Below should be for storing strings to be used as dialogue, no functional code
